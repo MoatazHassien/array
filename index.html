@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Chapter 4: Arrays - Practice Quiz</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #333; }
+        .question-box { border-bottom: 1px solid #ddd; padding: 15px 0; }
+        .question-text { font-weight: bold; font-size: 1.1em; margin-bottom: 10px; color: #0056b3; }
+        .code-snippet { background-color: #f8f9fa; border: 1px solid #ddd; padding: 10px; font-family: monospace; display: block; white-space: pre-wrap; margin: 10px 0; }
+        .options { margin-left: 20px; }
+        .answer-section { margin-top: 10px; background-color: #e8f5e9; padding: 10px; border-radius: 5px; border: 1px solid #c8e6c9; }
+        .correct-answer { font-weight: bold; color: #2e7d32; }
+        .explanation { font-style: italic; color: #555; margin-top: 5px; direction: rtl; text-align: right; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Programming I: Chapter 4 (Arrays) Quiz</h1>
+
+    <div class="question-box">
+        <div class="question-text">1. Which of the following statements correctly declares an array of integers named "numbers" with a size of 10?</div>
+        <div class="options">
+            A) <code>int numbers = new int[10];</code><br>
+            B) <code>int[] numbers = new int(10);</code><br>
+            C) <code>int[] numbers = new int[10];</code><br>
+            D) <code>numbers int[] = new int[10];</code>
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: C</span>
+            <div class="explanation">التفسير: وفقاً للصفحة 3 و 25، الصيغة الصحيحة لتعريف المصفوفة هي <code>type[] name = new type[length];</code>.</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">2. What is the default value of elements in a <code>boolean</code> array immediately after declaration?</div>
+        <div class="options">
+            A) true<br>
+            B) false<br>
+            C) null<br>
+            D) 0
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: B</span>
+            <div class="explanation">التفسير: كما هو موضح في الجدول في الصفحة 5، القيمة الافتراضية (Default value) للنوع boolean هي false.</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">3. Consider the following code. What is the valid range of indexes for the array <code>data</code>?</div>
+        <div class="code-snippet">int[] data = new int[8];</div>
+        <div class="options">
+            A) 1 to 8<br>
+            B) 0 to 8<br>
+            C) 0 to 7<br>
+            D) 1 to 7
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: C</span>
+            <div class="explanation">التفسير: الصفحة 2 تذكر أن الـ Index يبدأ من 0. والصفحة 19 توضح أن الـ Legal indexes هي بين 0 و (طول المصفوفة - 1). إذاً من 0 إلى 7.</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">4. What will be the output of the following code snippet?</div>
+        <div class="code-snippet">
+int[] list = new int[5];
+System.out.println(list[4]);
+        </div>
+        <div class="options">
+            A) null<br>
+            B) 0<br>
+            C) Garbage value<br>
+            D) Runtime Error
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: B</span>
+            <div class="explanation">التفسير: عند تعريف مصفوفة من نوع int، يتم تهيئة جميع العناصر بـ 0 تلقائياً (الصفحة 5). العنصر في الـ index 4 هو العنصر الأخير وقيمته 0.</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">5. Analyze the code below. What is the value of <code>arr[1]</code> after execution?</div>
+        <div class="code-snippet">
+int[] arr = new int[4];
+arr[0] = 2;
+arr[1] = arr[0] * 3 + 1;
+        </div>
+        <div class="options">
+            A) 6<br>
+            B) 0<br>
+            C) 7<br>
+            D) 3
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: C</span>
+            <div class="explanation">التفسير: تم تعيين <code>arr[0]</code> بـ 2. المعادلة هي <code>2 * 3 + 1</code> وتساوي 7. هذا تطبيق مباشر لتعديل القيم (الصفحة 6).</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">6. Which exception is thrown if you try to access <code>numbers[-1]</code>?</div>
+        <div class="options">
+            A) NullPointerException<br>
+            B) ArrayIndexOutOfBoundsException<br>
+            C) InvalidIndexException<br>
+            D) Compilation Error
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: B</span>
+            <div class="explanation">التفسير: الصفحة 19 تنص بوضوح على أن استخدام أي index خارج النطاق (مثل القيم السالبة) يسبب <code>ArrayIndexOutOfBoundsException</code>.</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">7. What is the result of the following operation based on the code below?</div>
+        <div class="code-snippet">
+int[] a = {10, 20, 30};
+int x = a.length;
+System.out.println(a[x]);
+        </div>
+        <div class="options">
+            A) 30<br>
+            B) 10<br>
+            C) 3<br>
+            D) ArrayIndexOutOfBoundsException
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: D</span>
+            <div class="explanation">التفسير: طول المصفوفة (x) هو 3. أقصى index مسموح به هو 2. محاولة الوصول لـ <code>a[3]</code> تسبب خطأ (Exception) كما هو مشروح في الصفحة 19.</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">8. In a 2D array declared as <code>double[][] matrix = new double[4][5];</code>, what does <code>matrix.length</code> represent?</div>
+        <div class="options">
+            A) The total number of elements (20)<br>
+            B) The number of columns (5)<br>
+            C) The number of rows (4)<br>
+            D) The size of the first row
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: C</span>
+            <div class="explanation">التفسير: في المصفوفات ثنائية الأبعاد، <code>name.length</code> تعيد عدد الصفوف (rows). انظر الصفحة 24.</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">9. What is the output of the following nested indexing code?</div>
+        <div class="code-snippet">
+int[] nums = new int[5];
+nums[0] = 1;
+nums[1] = 3;
+nums[3] = 0;
+System.out.println(nums[nums[1]]);
+        </div>
+        <div class="options">
+            A) 1<br>
+            B) 3<br>
+            C) 0<br>
+            D) ArrayIndexOutOfBoundsException
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: C</span>
+            <div class="explanation">التفسير: لنحللها خطوة بخطوة. <code>nums[1]</code> قيمتها 3. إذاً نحن نطلب <code>nums[3]</code>. وقيمة <code>nums[3]</code> تم تعيينها لتكون 0. (مبدأ استخدام عنصر كـ Index مشروح صفحة 8).</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">10. How do you find the number of columns in the first row of a 2D array named <code>grid</code>?</div>
+        <div class="options">
+            A) <code>grid.length</code><br>
+            B) <code>grid[0].length</code><br>
+            C) <code>grid.size()</code><br>
+            D) <code>grid[1].size</code>
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: B</span>
+            <div class="explanation">التفسير: الصفحة 24 توضح أن <code>name[0].length</code> تعيد عدد الأعمدة في الصف الأول.</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">11. Which loop structure is typically used to read array elements from the user?</div>
+        <div class="options">
+            A) <code>for (int i=0; i <= length; i++)</code><br>
+            B) <code>for (int i=1; i < length; i++)</code><br>
+            C) <code>for (int i=0; i < length; i++)</code><br>
+            D) <code>for (int i=1; i <= length; i++)</code>
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: C</span>
+            <div class="explanation">التفسير: المصفوفات تبدأ من 0 وتنتهي عند أقل من length بواحد. الخيار C هو الصحيح لتجنب الخطأ. (الصفحات 10-12).</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">12. Based on the "Quick array initialization" logic, what is the size of the following array?</div>
+        <div class="code-snippet">int[] vals = {5, 10, 15, 20, 25};</div>
+        <div class="options">
+            A) 4<br>
+            B) 5<br>
+            C) It must be specified manually.<br>
+            D) 6
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: B</span>
+            <div class="explanation">التفسير: الصفحة 17 تذكر أن المترجم (compiler) يقوم بحساب الحجم تلقائياً بناءً على عدد القيم المدخلة، وهي هنا 5 قيم.</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">13. In the statement <code>int[] data = new int[x % 5 + 2];</code>, if x is 12, what is the length of the array?</div>
+        <div class="options">
+            A) 2<br>
+            B) 4<br>
+            C) 5<br>
+            D) 12
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: B</span>
+            <div class="explanation">التفسير: حسب الصفحة 5، يمكن للحجم أن يكون تعبيراً رياضياً. 12 % 5 يساوي 2. ثم 2 + 2 يساوي 4.</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">14. What is the output of the following code snippet?</div>
+        <div class="code-snippet">
+int[] arr = new int[5];
+for(int i=0; i < 5; i++) {
+    arr[i] = i * 2;
+}
+System.out.println(arr[3]);
+        </div>
+        <div class="options">
+            A) 3<br>
+            B) 5<br>
+            C) 6<br>
+            D) 9
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: C</span>
+            <div class="explanation">التفسير: الحلقة تملأ المصفوفة. عندما تكون i=3، فإن <code>arr[3] = 3 * 2</code>، مما ينتج 6. (مشابه للمثال في الصفحة 10).</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">15. Which of the following correctly defines a 2D array using quick initialization?</div>
+        <div class="options">
+            A) <code>int[][] m = { {1,2}, {3,4} };</code><br>
+            B) <code>int[][] m = new int[2][2] {1,2,3,4};</code><br>
+            C) <code>int m[][] = { (1,2), (3,4) };</code><br>
+            D) <code>int[][] m = [1,2][3,4];</code>
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: A</span>
+            <div class="explanation">التفسير: الصيغة الصحيحة للتهيئة السريعة للمصفوفات ثنائية الأبعاد تستخدم الأقواس المتعرجة المتداخلة كما في الصفحة 22.</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">16. If <code>double[][] temps = new double[3][5];</code>, what does <code>temps[2]</code> refer to?</div>
+        <div class="options">
+            A) The element at row 2, column 0.<br>
+            B) The entire third row.<br>
+            C) The entire second column.<br>
+            D) A single double value.
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: B</span>
+            <div class="explanation">التفسير: وفقاً للصفحة 23، <code>temps[2]</code> تشير إلى الصف الثالث (third row) بأكمله كمصفوفة.</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">17. Look at the code block. What happens if the user enters 5 for the size?</div>
+        <div class="code-snippet">
+Scanner input = new Scanner(System.in);
+int size = input.nextInt();
+int[] arr = new int[size];
+System.out.println(arr[size]);
+        </div>
+        <div class="options">
+            A) Prints 0<br>
+            B) Prints 5<br>
+            C) Throws ArrayIndexOutOfBoundsException<br>
+            D) Prints the memory address
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: C</span>
+            <div class="explanation">التفسير: إذا كان الحجم 5، فإن الـ indexes الصحيحة هي 0، 1، 2، 3، 4. محاولة طباعة <code>arr[5]</code> تقع خارج النطاق. (صفحة 19).</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">18. To calculate the sum of elements in an array <code>salaries</code>, what should replace the `???`?</div>
+        <div class="code-snippet">
+double sum = 0;
+for (int i=0; i < salaries.length; i++) {
+    ???
+}
+        </div>
+        <div class="options">
+            A) <code>salaries[i] = sum;</code><br>
+            B) <code>sum = salaries[i];</code><br>
+            C) <code>sum += salaries[i];</code><br>
+            D) <code>sum = sum + i;</code>
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: C</span>
+            <div class="explanation">التفسير: لحساب المجموع التراكمي، يجب إضافة قيمة العنصر الحالي إلى المجموع السابق <code>sum = sum + salaries[i]</code>. (انظر كود الصفحة 13).</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">19. What data type is the "index" of an array always considered to be?</div>
+        <div class="options">
+            A) double<br>
+            B) integer (int)<br>
+            C) boolean<br>
+            D) String
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: B</span>
+            <div class="explanation">التفسير: الصفحة 2 تعرف الـ index بأنه "0-based integer". لا يمكن استخدام الفواصل العشرية كفهرس.</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">20. What is the value of <code>count</code> after this loop?</div>
+        <div class="code-snippet">
+int[] nums = {-10, 20, -30, 40};
+int count = 0;
+for(int i=0; i < nums.length; i++) {
+    if(nums[i] > 0) count++;
+}
+        </div>
+        <div class="options">
+            A) 1<br>
+            B) 2<br>
+            C) 3<br>
+            D) 4
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: B</span>
+            <div class="explanation">التفسير: الكود يعد الأرقام الموجبة فقط. الأرقام الموجبة في المصفوفة هي 20 و 40. إذاً العدد هو 2. (منطق مشابه لمثال الصفحة 15).</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">21. In Java, an array is best described as:</div>
+        <div class="options">
+            A) A primitive data type.<br>
+            B) An object that stores many values of the same type.<br>
+            C) A function to calculate math.<br>
+            D) An infinite storage container.
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: B</span>
+            <div class="explanation">التفسير: التعريف الحرفي الموجود في الصفحة 2: "Array: object that stores many values of the same type".</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">22. Given <code>int[][] nums = new int[3][4];</code>, which loop correctly iterates over all rows?</div>
+        <div class="options">
+            A) <code>for(int i=0; i < nums[0].length; i++)</code><br>
+            B) <code>for(int i=0; i < nums.length; i++)</code><br>
+            C) <code>for(int i=0; i <= 3; i++)</code><br>
+            D) <code>for(int i=1; i < 3; i++)</code>
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: B</span>
+            <div class="explanation">التفسير: للمرور على الصفوف، نستخدم الحلقة الخارجية التي تتوقف عند <code>nums.length</code> (عدد الصفوف). الخيار B هو الصحيح وفقاً للصفحة 25.</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">23. Can the size of an array be changed after it is created (e.g., <code>new int[5]</code>)?</div>
+        <div class="options">
+            A) Yes, by assigning a new value to .length.<br>
+            B) Yes, automatically when adding elements.<br>
+            C) No, the size is fixed upon creation.<br>
+            D) Yes, if it is a double array.
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: C</span>
+            <div class="explanation">التفسير: مفهوم المصفوفات في هذا الفصل (والجافا عموماً) أن الحجم يحدد عند الإنشاء (new int[n]). لإدخال عناصر أكثر، لا يمكن توسيعها بل يجب إنشاء واحدة جديدة (لم يذكر الملف التوسيع، مما يعني أن الحجم ثابت).</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">24. Identify the logic error in this loop designed to print array elements:</div>
+        <div class="code-snippet">
+int[] arr = {1, 2, 3};
+for (int i = 0; i <= arr.length; i++) {
+    System.out.println(arr[i]);
+}
+        </div>
+        <div class="options">
+            A) Syntax error in print statement.<br>
+            B) The loop starts at 0.<br>
+            C) The condition <code>i <= arr.length</code> causes an OutOfBounds exception at the end.<br>
+            D) No error, it runs perfectly.
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: C</span>
+            <div class="explanation">التفسير: الخطأ الشائع المذكور ضمنياً في الأمثلة (الصفحة 10 و 19). الشرط يجب أن يكون <code>i < length</code>. وجود علامة <code>=</code> يعني أن الحلقة ستحاول الوصول للـ index المساوي للطول، وهو غير موجود.</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">25. What is the correct syntax to access the element at Row 0, Column 3 in a 2D array named <code>map</code>?</div>
+        <div class="options">
+            A) <code>map[0, 3]</code><br>
+            B) <code>map[3][0]</code><br>
+            C) <code>map[0][3]</code><br>
+            D) <code>map(0)(3)</code>
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: C</span>
+            <div class="explanation">التفسير: الصفحة 20 و 21 توضح أن الوصول للعناصر في مصفوفة ثنائية الأبعاد يتم عبر <code>[row][col]</code>.</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">26. Which of the following is NOT a valid array declaration?</div>
+        <div class="options">
+            A) <code>int[] a = new int[5];</code><br>
+            B) <code>double[] b = new double[x * y];</code><br>
+            C) <code>int c[] = new int[5];</code><br>
+            D) <code>int[] d = new int[];</code>
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: D</span>
+            <div class="explanation">التفسير: عند استخدام كلمة <code>new</code>، يجب تحديد حجم المصفوفة بين القوسين <code>[]</code>. الخيار D يفتقد للحجم وهذا خطأ (syntax error). (راجع صفحة 25).</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">27. What happens if you run: <code>int[] arr = new int[5]; arr[5] = 10;</code>?</div>
+        <div class="options">
+            A) The array size increases to 6.<br>
+            B) The value 10 is ignored.<br>
+            C) An exception is thrown because index 5 is out of bounds.<br>
+            D) It sets the last element to 10.
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: C</span>
+            <div class="explanation">التفسير: المصفوفة حجمها 5، الـ indexes هي 0,1,2,3,4. الـ index 5 غير موجود. (صفحة 19).</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">28. In the example <code>Scanner input = new Scanner(System.in); int n = input.nextInt(); int[] numbers = new int[n];</code>, where does the array length come from?</div>
+        <div class="options">
+            A) It is fixed to 10.<br>
+            B) It is determined by the programmer at compile time.<br>
+            C) It is entered by the user at runtime.<br>
+            D) It is random.
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: C</span>
+            <div class="explanation">التفسير: صفحة 4 توضح هذا المثال وتذكر "The length can be entered by the user".</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">29. What is the exact output of this snippet?</div>
+        <div class="code-snippet">
+int[] nums = {1, 2, 3};
+System.out.println(nums);
+        </div>
+        <div class="options">
+            A) 1 2 3<br>
+            B) {1, 2, 3}<br>
+            C) A memory address string (hash code).<br>
+            D) 1
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: C</span>
+            <div class="explanation">التفسير: على الرغم من أن الملف لا يذكر هذا صراحة كنص، إلا أن جميع الأمثلة في الملف تستخدم حلقات (loops) لطباعة العناصر (مثل صفحة 10 و 12). هذا يعني ضمناً أن طباعة اسم المصفوفة مباشرة لا يطبع محتوياتها بل عنوانها. (هذا سؤال استنتاجي صعب).</div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="question-text">30. "Element" refers to:</div>
+        <div class="options">
+            A) The position number.<br>
+            B) One value in an array.<br>
+            C) The size of the array.<br>
+            D) The type of the array.
+        </div>
+        <div class="answer-section">
+            <span class="correct-answer">Correct Answer: B</span>
+            <div class="explanation">التفسير: تعريف مباشر من الصفحة 2: "Element: One value in an array".</div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
