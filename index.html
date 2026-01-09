@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Java Arrays Quiz</title>
+    <style>
+        :root { --p: #2563eb; --s: #059669; --e: #dc2626; --bg: #f1f5f9; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); padding: 20px; color: #1e293b; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: var(--p); margin-bottom: 30px; }
+        .q-card { margin-bottom: 40px; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; position: relative; }
+        .level { position: absolute; top: 10px; right: 10px; font-size: 0.8em; padding: 3px 8px; border-radius: 4px; font-weight: bold; text-transform: uppercase; }
+        .med { background: #fef3c7; color: #92400e; }
+        .hard { background: #ffedd5; color: #9a3412; }
+        .vhard { background: #fee2e2; color: #991b1b; }
+        .q-text { font-size: 1.1em; font-weight: 600; margin-bottom: 15px; display: block; }
+        .code { background: #1e293b; color: #f8fafc; padding: 15px; border-radius: 6px; font-family: 'Consolas', monospace; margin: 10px 0; white-space: pre; overflow-x: auto; }
+        .options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .opt-btn { padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; background: #fff; cursor: pointer; text-align: left; transition: 0.2s; }
+        .opt-btn:hover { background: #f8fafc; border-color: var(--p); }
+        .correct { background: #dcfce7 !important; border-color: var(--s) !important; color: #166534; font-weight: bold; }
+        .wrong { background: #fee2e2 !important; border-color: var(--e) !important; color: #991b1b; }
+        .exp { margin-top: 15px; padding: 15px; background: #f0f9ff; border-left: 4px solid var(--p); display: none; direction: rtl; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>اختبار المصفوفات التفاعلي (30 سؤال)</h1>
+    <div id="quiz"></div>
+</div>
+
+<script>
+const quizData = [
+    // Average Questions
+    { l: "med", q: "What is an 'Element' in an array?", opts: ["The size of the array", "One value in an array", "The position number", "A keyword in Java"], c: 1, e: "تعريف صريح في صفحة 2: العنصر هو قيمة واحدة داخل المصفوفة." },
+    { l: "med", q: "What is the default value for an uninitialized 'int' array element?", opts: ["null", "garbage value", "0", "-1"], c: 2, e: "حسب الجدول في صفحة 5، القيم العددية الصحيحة تُهيأ تلقائياً بـ 0." },
+    { l: "med", q: "Which index is the first element of any array?", opts: ["1", "-1", "0", "Any number"], c: 2, e: "المصفوفات في جافا تبدأ دائماً من الفهرس 0 (0-based) صفحة 2." },
+    { l: "med", q: "How do you declare an array of 5 doubles?", opts: ["double arr[5];", "double[] arr = new double[5];", "double arr = new double[5];", "new double arr[5];"], c: 1, e: "الصيغة الصحيحة لتعريف مصفوفة محددة الحجم هي الخيار الثاني (صفحة 3)." },
+    { l: "med", q: "What is the property used to get the size of an array?", opts: [".size()", ".length()", ".length", ".capacity"], c: 2, e: "في المصفوفات نستخدم الخاصية .length بدون أقواس (صفحة 24)." },
+    
+    // Hard Questions
+    { l: "hard", q: "What is the output of the following code?", code: "int[] x = {10, 20, 30};\nSystem.out.print(x[1]);", opts: ["10", "20", "30", "Error"], c: 1, e: "الفهرس 1 يشير للعنصر الثاني، وهو 20 (صفحة 2)." },
+    { l: "hard", q: "If x = 5, what is the length of this array?", code: "int[] arr = new int[x * 2 - 3];", opts: ["5", "10", "7", "13"], c: 2, e: "الحجم هو ناتج العملية الحسابية: 5 * 2 - 3 = 7 (صفحة 5)." },
+    { l: "hard", q: "Which exception occurs when accessing index 10 in an array of size 10?", opts: ["NullPointerException", "ArithmeticException", "ArrayIndexOutOfBoundsException", "No exception"], c: 2, e: "بما أن الحجم 10، آخر فهرس مسموح هو 9. الوصول لـ 10 يسبب خطأ تجاوز الحدود (صفحة 19)." },
+    { l: "hard", q: "What does grid.length represent in 'int[][] grid = new int[3][5];'?", opts: ["15", "5", "3", "8"], c: 2, e: "في المصفوفة ثنائية الأبعاد، .length تعطي عدد الصفوف (Rows) صفحة 24." },
+    { l: "hard", q: "How do you access the last element of an array named 'vals'?", opts: ["vals[vals.length]", "vals[vals.length - 1]", "vals[last]", "vals[-1]"], c: 1, e: "بما أن الترقيم يبدأ من 0، فإن العنصر الأخير دائماً مكانه length-1 (صفحة 19)." },
+
+    // Very Hard Questions
+    { l: "vhard", q: "What is the output?", code: "int[] a = {1, 2, 3};\nint[] b = a;\nb[0] = 5;\nSystem.out.print(a[0]);", opts: ["1", "5", "0", "Error"], c: 1, e: "بما أن b تشير لنفس مصفوفة a، فإن أي تغيير في b يؤثر على a. (مفهوم الـ Reference)." },
+    { l: "vhard", q: "Consider the code. What prints?", code: "int[][] m = {{1, 2}, {3, 4}};\nSystem.out.print(m[1][0]);", opts: ["1", "2", "3", "4"], c: 2, e: "m[1] هو الصف الثاني {3, 4}، و [0] هو العنصر الأول فيه وهو 3 (صفحة 21)." },
+    { l: "vhard", q: "What is the value of sum?", code: "int[] n = {1, 2, 3};\nint sum = 0;\nfor(int i : n) sum += i;", opts: ["3", "6", "0", "Error"], c: 1, e: "هذه حلقة جمع، تجمع 1+2+3 والناتج 6. (صفحة 13)." },
+    { l: "vhard", q: "Which of these allows an array size to be determined at runtime?", opts: ["int[] a = {1,2};", "Scanner input... n = nextInt(); int[] a = new int[n];", "int[] a = new int[10];", "Arrays cannot be sized at runtime"], c: 1, e: "صفحة 4 توضح أنه يمكن أخذ الحجم من المستخدم وتمريره لتعريف المصفوفة." },
+    { l: "vhard", q: "What is the result of grid[0].length if grid = new int[4][10]?", opts: ["4", "10", "40", "0"], c: 1, e: "grid[0] هو الصف الأول، وطوله هو عدد الأعمدة (10). صفحة 24." },
+    
+    // Adding more to reach 30... (simplified labels for brevity in this display)
+    { l: "med", q: "Can an array store both int and double values?", opts: ["Yes", "No", "Only if casted", "Sometimes"], c: 1, e: "المصفوفة تخزن نوعاً واحداً فقط (same type) كما في صفحة 2." },
+    { l: "hard", q: "What is the result of 'new int[3].length'?", opts: ["0", "1", "2", "3"], c: 3, e: "الطول المحدد هو 3." },
+    { l: "vhard", q: "What is printed?", code: "int[] arr = new int[2];\nSystem.out.print(arr[0] + arr[1]);", opts: ["0", "null", "Garbage", "Error"], c: 0, e: "كلا العنصرين 0، فالمجموع 0." },
+    { l: "med", q: "The 'new' keyword is used to:", opts: ["Declare size", "Create the array object", "Delete array", "None"], c: 1, e: "الكلمة new هي التي تنشئ المصفوفة فعلياً في الذاكرة (صفحة 3)." },
+    { l: "hard", q: "A 2D array is actually:", opts: ["A table", "An array of arrays", "A list", "A matrix"], c: 1, e: "تقنياً في جافا، المصفوفة ثنائية الأبعاد هي مصفوفة تحتوي على مصفوفات كعناصر (صفحة 23)." },
+    { l: "vhard", q: "Find the error:", code: "int[] a; a[0] = 5;", opts: ["No size defined", "Wrong index", "Semi-colon missing", "No error"], c: 0, e: "تم تعريف المتغير a ولكن لم يتم إنشاء المصفوفة (new) وتحديد حجمها." },
+    { l: "med", q: "Index of middle element in array of length 7?", opts: ["2", "3", "4", "3.5"], c: 1, e: "الفهرس 3 (لأن الترتيب 0,1,2,3,4,5,6)." },
+    { l: "hard", q: "What is grid[2][1]?", code: "int[][] grid = {{1,2,3},{4,5,6},{7,8,9}};", opts: ["2", "5", "6", "8"], c: 3, e: "الصف الثالث (index 2) هو {7,8,9}، العنصر الثاني فيه (index 1) هو 8." },
+    { l: "vhard", q: "Maximum value of index in array of length N?", opts: ["N", "N+1", "N-1", "0"], c: 2, e: "دائماً أقصى فهرس هو الطول ناقص 1 (صفحة 19)." },
+    { l: "med", q: "Type of array index?", opts: ["double", "float", "int", "String"], c: 2, e: "الفهرس يجب أن يكون عدداً صحيحاً (integer) صفحة 2." },
+    { l: "hard", q: "Code to create 3x3 matrix?", opts: ["int[3,3] a;", "int[][] a = new int[3][3];", "int[][] a = new int[9];", "int a = 3x3;"], c: 1, e: "الصيغة لثنائية الأبعاد هي [rows][cols]." },
+    { l: "vhard", q: "Result of 'int[] a = {}; a.length'?", opts: ["Error", "0", "null", "undefined"], c: 1, e: "مصفوفة فارغة طولها 0." },
+    { l: "med", q: "What is an index?", opts: ["Value", "Position", "Size", "Type"], c: 1, e: "الفهرس هو رقم يشير لموقع العنصر (صفحة 2)." },
+    { l: "hard", q: "int[] a = {1,2,3}; a[1]++; What is a[1]?", opts: ["1", "2", "3", "4"], c: 2, e: "العنصر هو 2، بعد ++ يصبح 3." },
+    { l: "vhard", q: "Which loop reads 10 values?", opts: ["for(i=0; i<10; i++)", "for(i=1; i<=10; i++)", "Both", "None"], c: 2, e: "كلا الحلقتين ستكرران 10 مرات، لكن للأدلة (indices) نفضل الأولى." }
+];
+
+const quiz = document.getElementById('quiz');
+quizData.forEach((data, i) => {
+    const card = document.createElement('div');
+    card.className = 'q-card';
+    card.innerHTML = `
+        <span class="level ${data.l}">${data.l === 'med' ? 'Medium' : data.l === 'hard' ? 'Hard' : 'Very Hard'}</span>
+        <span class="q-text">${i+1}. ${data.q}</span>
+        ${data.code ? `<div class="code">${data.code}</div>` : ''}
+        <div class="options" id="opt-grid-${i}">
+            ${data.opts.map((o, idx) => `<button class="opt-btn" onclick="check(${i}, ${idx}, ${data.c})">${o}</button>`).join('')}
+        </div>
+        <div class="exp" id="exp-${i}">${data.e}</div>
+    `;
+    quiz.appendChild(card);
+});
+
+function check(qIdx, sIdx, cIdx) {
+    const btns = document.getElementById(`opt-grid-${qIdx}`).children;
+    for(let b of btns) b.disabled = true;
+    if(sIdx === cIdx) btns[sIdx].classList.add('correct');
+    else {
+        btns[sIdx].classList.add('wrong');
+        btns[cIdx].classList.add('correct');
+    }
+    document.getElementById(`exp-${qIdx}`).style.display = 'block';
+}
+</script>
+</body>
+</html>
